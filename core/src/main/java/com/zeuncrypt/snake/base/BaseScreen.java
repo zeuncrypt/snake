@@ -1,19 +1,31 @@
-package com.zeuncrypt.base;
+package com.zeuncrypt.snake.base;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.zeuncrypt.TicTacToe;
-import com.zeuncrypt.view.OverlayRenderer;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.zeuncrypt.snake.Main;
+import com.zeuncrypt.snake.renderer.OverlayRenderer;
 
 public abstract class BaseScreen implements Screen {
 
-	protected final TicTacToe game;
+	protected final Main game;
+
+    protected final SpriteBatch batch;
+    protected final BitmapFont font;
+    protected final FitViewport viewport;
+
 	protected final OverlayRenderer overlayRenderer;
 
-	public BaseScreen(final TicTacToe game) {
+	public BaseScreen(final Main game) {
 		this.game = game;
+
+        this.batch = game.getBatch();
+        this.font = game.getFont();
+        this.viewport = game.getViewport();
+
 		this.overlayRenderer = new OverlayRenderer(game);
 	}
 
@@ -26,17 +38,17 @@ public abstract class BaseScreen implements Screen {
 	public void render(float delta) {
 		ScreenUtils.clear(Color.WHITE);
 
-		game.viewport.apply();
-		game.batch.setProjectionMatrix(game.viewport.getCamera().combined);
+		viewport.apply();
+		batch.setProjectionMatrix(viewport.getCamera().combined);
 
-		game.batch.begin();
+		batch.begin();
 		this.draw();
-		game.batch.end();
+		batch.end();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		game.viewport.update(width, height, true);
+		viewport.update(width, height, true);
 	}
 
 	@Override
