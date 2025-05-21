@@ -1,4 +1,4 @@
-package com.zeuncrypt.utils;
+package com.zeuncrypt.snake.util;
 
 import com.badlogic.gdx.math.Vector2;
 

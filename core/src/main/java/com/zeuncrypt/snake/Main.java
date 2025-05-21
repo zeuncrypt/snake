@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.zeuncrypt.snake.screen.MainScreen;
+import com.zeuncrypt.snake.screen.GameScreen;
 
 public class Main extends Game {
     private SpriteBatch batch;
@@ -18,7 +18,7 @@ public class Main extends Game {
         this.font = new BitmapFont();
         this.viewport = new FitViewport(16, 16);
 
-        this.setScreen(new MainScreen(this));
+        this.setScreen(new GameScreen(this));
     }
 
     @Override
